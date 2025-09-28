@@ -1,0 +1,23 @@
+# 環境變數檔案
+.env
+
+# 用戶數據檔案
+user_data.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

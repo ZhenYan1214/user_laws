@@ -301,8 +301,12 @@ def linebot():
     body = request.get_data(as_text=True)
     try:
         json_data = json.loads(body)
-        access_token = '1wtaJqwC5T0KdZZkTeEm87wahZ8Cwjs+olv3sEjMyKfb8jvHcFiFUPdZ6ZWo/vuOSPTvrfMsWEKQIk1WRE6BM/TaJAC2cFFW7TgIiCGrlwRrO4NdZ9KVFHz8z+D4isfMStlnrAf8mPIGOqQzZSR+ewdB04t89/1O/w1cDnyilFU='
-        secret = '414e66e12afd781c391d0f57d702bbee'
+        access_token = os.environ.get('LINE_CHANNEL_ACCESS_TOKEN')
+        secret = os.environ.get('LINE_CHANNEL_SECRET')
+        
+        if not access_token or not secret:
+            print("錯誤: LINE_CHANNEL_ACCESS_TOKEN 或 LINE_CHANNEL_SECRET 環境變數未設定")
+            return
         line_bot_api = LineBotApi(access_token)
         handler = WebhookHandler(secret)
         signature = request.headers['X-Line-Signature']
@@ -399,6 +403,8 @@ def linebot():
     except Exception as e:
         print("錯誤:", e)
         print("收到內容:", body)
+    
+    return "OK"
 
 if __name__ == "__main__":
     import os
