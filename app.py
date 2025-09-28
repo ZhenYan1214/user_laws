@@ -50,7 +50,7 @@ def create_terms_flex_message():
                 "contents": [
                     {
                         "type": "text",
-                        "text": "🩺 糖小護",
+                        "text": "糖小護",
                         "weight": "bold",
                         "size": "xl",
                         "color": "#2E86AB",
@@ -58,7 +58,7 @@ def create_terms_flex_message():
                     },
                     {
                         "type": "text",
-                        "text": "個人健康數據服務條款",
+                        "text": "服務條款",
                         "size": "md",
                         "color": "#5A9FD4",
                         "align": "center",
@@ -75,82 +75,67 @@ def create_terms_flex_message():
                 "contents": [
                     {
                         "type": "text",
-                        "text": "歡迎使用糖小護健康管理服務！",
+                        "text": "一、資料蒐集範圍",
                         "weight": "bold",
-                        "size": "lg",
+                        "size": "sm",
                         "color": "#2E86AB",
                         "margin": "md"
                     },
                     {
-                        "type": "separator",
-                        "margin": "md",
-                        "color": "#E6F3FF"
+                        "type": "text",
+                        "text": "血糖數值記錄\n健康諮詢對話內容\n上傳的醫療相關圖片\n使用行為統計資料",
+                        "size": "xs",
+                        "color": "#666666",
+                        "wrap": True,
+                        "margin": "sm"
                     },
                     {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "📊 資料蒐集範圍",
-                                "weight": "bold",
-                                "size": "sm",
-                                "color": "#2E86AB",
-                                "margin": "lg"
-                            },
-                            {
-                                "type": "text",
-                                "text": "• 血糖數值記錄\n• 健康諮詢對話內容\n• 上傳的醫療相關圖片\n• 使用行為統計資料",
-                                "size": "xs",
-                                "color": "#666666",
-                                "wrap": True,
-                                "margin": "sm"
-                            }
-                        ]
+                        "type": "text",
+                        "text": "二、使用目的",
+                        "weight": "bold",
+                        "size": "sm",
+                        "color": "#2E86AB",
+                        "margin": "lg"
                     },
                     {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "🎯 使用目的",
-                                "weight": "bold",
-                                "size": "sm",
-                                "color": "#2E86AB",
-                                "margin": "md"
-                            },
-                            {
-                                "type": "text",
-                                "text": "• 提供個人化健康建議\n• 生成專屬健康報表\n• 改善服務品質\n• 緊急健康提醒",
-                                "size": "xs",
-                                "color": "#666666",
-                                "wrap": True,
-                                "margin": "sm"
-                            }
-                        ]
+                        "type": "text",
+                        "text": "提供個人化健康建議\n生成專屬個人健康報表\n持續改善服務品質",
+                        "size": "xs",
+                        "color": "#666666",
+                        "wrap": True,
+                        "margin": "sm"
                     },
                     {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "🔒 隱私保護",
-                                "weight": "bold",
-                                "size": "sm",
-                                "color": "#2E86AB",
-                                "margin": "md"
-                            },
-                            {
-                                "type": "text",
-                                "text": "• 資料採用加密儲存\n• 不會與第三方分享\n• 可隨時要求刪除資料\n• 符合個資法規範",
-                                "size": "xs",
-                                "color": "#666666",
-                                "wrap": True,
-                                "margin": "sm"
-                            }
-                        ]
+                        "type": "text",
+                        "text": "三、隱私保護",
+                        "weight": "bold",
+                        "size": "sm",
+                        "color": "#2E86AB",
+                        "margin": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "您可隨時要求刪除個人資料\n全程遵守《個人資料保護法》及相關醫療資訊法規",
+                        "size": "xs",
+                        "color": "#666666",
+                        "wrap": True,
+                        "margin": "sm"
+                    },
+                    {
+                        "type": "text",
+                        "text": "四、同意與生效",
+                        "weight": "bold",
+                        "size": "sm",
+                        "color": "#2E86AB",
+                        "margin": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "繼續使用即表示您已閱讀並同意本服務條款。",
+                        "size": "xs",
+                        "color": "#666666",
+                        "wrap": True,
+                        "margin": "sm"
                     }
                 ],
                 "paddingAll": "20px",
@@ -160,14 +145,6 @@ def create_terms_flex_message():
                 "type": "box",
                 "layout": "vertical",
                 "contents": [
-                    {
-                        "type": "text",
-                        "text": "繼續使用即表示您同意上述條款",
-                        "size": "xs",
-                        "color": "#999999",
-                        "align": "center",
-                        "margin": "sm"
-                    },
                     {
                         "type": "separator",
                         "margin": "md",
@@ -224,7 +201,7 @@ def create_welcome_message():
                 "contents": [
                     {
                         "type": "text",
-                        "text": "🎉 歡迎加入糖小護！",
+                        "text": "歡迎使用糖小護",
                         "weight": "bold",
                         "size": "xl",
                         "color": "#FFFFFF",
@@ -248,7 +225,7 @@ def create_welcome_message():
                 "contents": [
                     {
                         "type": "text",
-                        "text": "✅ 條款同意完成",
+                        "text": "條款同意完成",
                         "weight": "bold",
                         "size": "md",
                         "color": "#2E86AB",
@@ -260,30 +237,24 @@ def create_welcome_message():
                         "color": "#E6F3FF"
                     },
                     {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "🩺 您現在可以：",
-                                "weight": "bold",
-                                "size": "sm",
-                                "color": "#2E86AB",
-                                "margin": "lg"
-                            },
-                            {
-                                "type": "text",
-                                "text": "📝 記錄每日血糖數值\n💬 諮詢健康相關問題\n📸 上傳檢查報告圖片\n📊 查看個人健康報表",
-                                "size": "sm",
-                                "color": "#666666",
-                                "wrap": True,
-                                "margin": "sm"
-                            }
-                        ]
+                        "type": "text",
+                        "text": "您現在可以使用以下服務：",
+                        "weight": "bold",
+                        "size": "sm",
+                        "color": "#2E86AB",
+                        "margin": "lg"
                     },
                     {
                         "type": "text",
-                        "text": "現在就開始輸入您的血糖數值或問我任何健康問題吧！",
+                        "text": "記錄每日血糖數值\n諮詢健康相關問題\n上傳檢查報告圖片\n查看個人健康報表",
+                        "size": "sm",
+                        "color": "#666666",
+                        "wrap": True,
+                        "margin": "sm"
+                    },
+                    {
+                        "type": "text",
+                        "text": "您可以開始輸入血糖數值或健康相關問題。",
                         "size": "sm",
                         "color": "#5A9FD4",
                         "wrap": True,
@@ -313,9 +284,14 @@ def linebot():
         handler.handle(body, signature)
 
         event = json_data['events'][0]
-        tk = event['replyToken']
-        user_id = event['source']['userId']  # 使用者 ID
         event_type = event['type']
+        user_id = event['source']['userId']  # 使用者 ID
+        
+        # 某些事件沒有 replyToken (如 unfollow)
+        tk = event.get('replyToken')
+        if not tk:
+            print(f"事件類型 {event_type} 沒有 replyToken，忽略")
+            return "OK"
         
         # 處理加好友事件
         if event_type == 'follow':
