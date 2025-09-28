@@ -312,90 +312,112 @@ def linebot():
         signature = request.headers['X-Line-Signature']
         handler.handle(body, signature)
 
-        tk = json_data['events'][0]['replyToken']
-        user_id = json_data['events'][0]['source']['userId']  # 使用者 ID
-        msg_type = json_data['events'][0]['message']['type']
+        event = json_data['events'][0]
+        tk = event['replyToken']
+        user_id = event['source']['userId']  # 使用者 ID
+        event_type = event['type']
+        
+        # 處理加好友事件
+        if event_type == 'follow':
+            # 新用戶加入 → 發送專業的條款頁面
+            flex_message = create_terms_flex_message()
+            line_bot_api.reply_message(tk, FlexSendMessage(
+                alt_text=flex_message["altText"],
+                contents=flex_message["contents"]
+            ))
+            user_consent[user_id] = {
+                "status": "pending",
+                "first_contact": datetime.now().isoformat(),
+                "blood_sugar_records": []
+            }
+            save_user_data(user_consent)
+            return
 
-        if msg_type == 'text':
-            msg = json_data['events'][0]['message']['text']
-            print(f"收到: {msg}")
+        elif event_type == 'message':
+            msg_type = event['message']['type']
+            if msg_type == 'text':
+                msg = event['message']['text']
+                print(f"收到: {msg}")
 
-            # 檢查是否已經同意
-            if user_id not in user_consent:
-                # 新用戶 → 發送專業的條款頁面
-                flex_message = create_terms_flex_message()
-                line_bot_api.reply_message(tk, FlexSendMessage(
-                    alt_text=flex_message["altText"],
-                    contents=flex_message["contents"]
-                ))
-                user_consent[user_id] = {
-                    "status": "pending",
-                    "first_contact": datetime.now().isoformat(),
-                    "blood_sugar_records": []
-                }
-                save_user_data(user_consent)
-                return
-
-            elif user_consent[user_id].get("status") == "pending":
-                # 等待用戶回覆
-                if msg == "同意":
-                    # 發送歡迎訊息
-                    welcome_message = create_welcome_message()
+                # 檢查是否已經同意
+                if user_id not in user_consent:
+                    # 新用戶 → 發送專業的條款頁面
+                    flex_message = create_terms_flex_message()
                     line_bot_api.reply_message(tk, FlexSendMessage(
-                        alt_text=welcome_message["altText"],
-                        contents=welcome_message["contents"]
+                        alt_text=flex_message["altText"],
+                        contents=flex_message["contents"]
                     ))
-                    user_consent[user_id]["status"] = "agreed"
-                    user_consent[user_id]["agreed_time"] = datetime.now().isoformat()
+                    user_consent[user_id] = {
+                        "status": "pending",
+                        "first_contact": datetime.now().isoformat(),
+                        "blood_sugar_records": []
+                    }
                     save_user_data(user_consent)
                     return
-                elif msg == "不同意":
-                    reply = "感謝您的回覆。如果您改變心意，歡迎隨時重新開始對話。\n\n為了保護您的隱私，我們將不會保存任何資料。"
-                    user_consent[user_id]["status"] = "disagreed"
-                    user_consent[user_id]["disagreed_time"] = datetime.now().isoformat()
-                    save_user_data(user_consent)
-                else:
-                    reply = "請點選條款頁面中的「同意並開始使用」或「暫不同意」按鈕，或直接回覆「同意」或「不同意」。"
 
-            else:
-                # 已經有狀態了
-                if user_consent[user_id].get("status") == "agreed":
-                    # 這裡可以加入您的主要功能邏輯
-                    if "血糖" in msg or any(char.isdigit() for char in msg):
-                        # 記錄血糖數據
-                        blood_sugar_record = {
-                            "value": msg,
-                            "timestamp": datetime.now().isoformat()
-                        }
-                        user_consent[user_id]["blood_sugar_records"].append(blood_sugar_record)
-                        save_user_data(user_consent)
-                        
-                        record_count = len(user_consent[user_id]["blood_sugar_records"])
-                        reply = f"📊 已記錄您的血糖數據：{msg}\n\n這是您的第 {record_count} 筆記錄。如需查看報表或更多功能，請繼續輸入指令。"
-                    elif "報表" in msg or "圖表" in msg:
-                        record_count = len(user_consent[user_id]["blood_sugar_records"])
-                        if record_count > 0:
-                            recent_records = user_consent[user_id]["blood_sugar_records"][-5:]
-                            records_text = "\n".join([f"• {r['value']} ({r['timestamp'][:10]})" for r in recent_records])
-                            reply = f"📈 您的血糖記錄（最近5筆）：\n{records_text}\n\n總共已記錄 {record_count} 筆數據。完整報表功能開發中！"
-                        else:
-                            reply = "📈 您還沒有血糖記錄。請先輸入血糖數值開始記錄！"
-                    else:
-                        reply = f"💬 糖小護收到您的訊息：{msg}\n\n我正在學習更多健康知識來更好地為您服務！您可以輸入血糖數值或健康相關問題。"
-                elif user_consent[user_id].get("status") == "disagreed":
-                    reply = "由於您尚未同意服務條款，目前無法使用糖小護的功能。\n\n如果您想重新開始，請輸入「重新開始」。"
-                    if msg == "重新開始":
-                        del user_consent[user_id]
-                        save_user_data(user_consent)
-                        flex_message = create_terms_flex_message()
+                elif user_consent[user_id].get("status") == "pending":
+                    # 等待用戶回覆
+                    if msg == "同意":
+                        # 發送歡迎訊息
+                        welcome_message = create_welcome_message()
                         line_bot_api.reply_message(tk, FlexSendMessage(
-                            alt_text=flex_message["altText"],
-                            contents=flex_message["contents"]
+                            alt_text=welcome_message["altText"],
+                            contents=welcome_message["contents"]
                         ))
+                        user_consent[user_id]["status"] = "agreed"
+                        user_consent[user_id]["agreed_time"] = datetime.now().isoformat()
+                        save_user_data(user_consent)
                         return
+                    elif msg == "不同意":
+                        reply = "感謝您的回覆。如果您改變心意，歡迎隨時重新開始對話。\n\n為了保護您的隱私，我們將不會保存任何資料。"
+                        user_consent[user_id]["status"] = "disagreed"
+                        user_consent[user_id]["disagreed_time"] = datetime.now().isoformat()
+                        save_user_data(user_consent)
+                    else:
+                        reply = "請點選條款頁面中的「同意並開始使用」或「暫不同意」按鈕，或直接回覆「同意」或「不同意」。"
 
+                else:
+                    # 已經有狀態了
+                    if user_consent[user_id].get("status") == "agreed":
+                        # 這裡可以加入您的主要功能邏輯
+                        if "血糖" in msg or any(char.isdigit() for char in msg):
+                            # 記錄血糖數據
+                            blood_sugar_record = {
+                                "value": msg,
+                                "timestamp": datetime.now().isoformat()
+                            }
+                            user_consent[user_id]["blood_sugar_records"].append(blood_sugar_record)
+                            save_user_data(user_consent)
+                            
+                            record_count = len(user_consent[user_id]["blood_sugar_records"])
+                            reply = f"📊 已記錄您的血糖數據：{msg}\n\n這是您的第 {record_count} 筆記錄。如需查看報表或更多功能，請繼續輸入指令。"
+                        elif "報表" in msg or "圖表" in msg:
+                            record_count = len(user_consent[user_id]["blood_sugar_records"])
+                            if record_count > 0:
+                                recent_records = user_consent[user_id]["blood_sugar_records"][-5:]
+                                records_text = "\n".join([f"• {r['value']} ({r['timestamp'][:10]})" for r in recent_records])
+                                reply = f"📈 您的血糖記錄（最近5筆）：\n{records_text}\n\n總共已記錄 {record_count} 筆數據。完整報表功能開發中！"
+                            else:
+                                reply = "📈 您還沒有血糖記錄。請先輸入血糖數值開始記錄！"
+                        else:
+                            reply = f"💬 糖小護收到您的訊息：{msg}\n\n我正在學習更多健康知識來更好地為您服務！您可以輸入血糖數值或健康相關問題。"
+                    elif user_consent[user_id].get("status") == "disagreed":
+                        reply = "由於您尚未同意服務條款，目前無法使用糖小護的功能。\n\n如果您想重新開始，請輸入「重新開始」。"
+                        if msg == "重新開始":
+                            del user_consent[user_id]
+                            save_user_data(user_consent)
+                            flex_message = create_terms_flex_message()
+                            line_bot_api.reply_message(tk, FlexSendMessage(
+                                alt_text=flex_message["altText"],
+                                contents=flex_message["contents"]
+                            ))
+                            return
+            else:
+                reply = "糖小護目前支援文字訊息，圖片功能正在開發中！\n\n請輸入您的血糖數值或健康相關問題。"
+        
         else:
-            reply = "糖小護目前支援文字訊息，圖片功能正在開發中！\n\n請輸入您的血糖數值或健康相關問題。"
+            # 其他事件類型 (unfollow, postback 等)
+            return "OK"
 
         print("回覆:", reply)
         line_bot_api.reply_message(tk, TextSendMessage(reply))
