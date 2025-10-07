@@ -5,7 +5,7 @@ from datetime import datetime
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage,
+    MessageEvent, TextMessage, TextSendMessage,
     FlexSendMessage, PostbackEvent, PostbackAction,
     QuickReply, QuickReplyButton, MessageAction
 )
@@ -525,6 +525,417 @@ def create_tutorial_carousel():
         }
     }
 
+def create_qa_tutorial_carousel():
+    """創建問答功能詳細教學 Carousel"""
+    return {
+        "type": "flex",
+        "altText": "問答功能教學",
+        "contents": {
+            "type": "carousel",
+            "contents": [
+                {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/qa-step1.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "第1步：開始提問",
+                                "weight": "bold",
+                                "size": "lg",
+                                "color": "#2E86AB",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "直接在聊天室輸入您的健康問題，例如：\n\n• 血糖高怎麼辦？\n• 糖尿病可以吃什麼？\n• 運動對血糖的影響",
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": True,
+                                "margin": "md"
+                            }
+                        ],
+                        "paddingAll": "20px"
+                    }
+                },
+                {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/qa-step2.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "第2步：AI分析回答",
+                                "weight": "bold",
+                                "size": "lg",
+                                "color": "#2E86AB",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "糖小護會透過RAG系統：\n\n• 搜尋專業知識庫\n• 分析您的問題\n• 提供準確的健康建議\n• 給出相關的參考資料",
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": True,
+                                "margin": "md"
+                            }
+                        ],
+                        "paddingAll": "20px"
+                    }
+                }
+            ]
+        }
+    }
+
+def create_voice_tutorial_carousel():
+    """創建語音轉文字詳細教學 Carousel"""
+    return {
+        "type": "flex",
+        "altText": "語音轉文字教學",
+        "contents": {
+            "type": "carousel",
+            "contents": [
+                {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/voice-step1.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "第1步：點擊語音按鈕",
+                                "weight": "bold",
+                                "size": "lg",
+                                "color": "#2E86AB",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "在聊天室下方的功能按鈕中，找到並點擊：\n\n🎤 語音轉文字\n\n點擊後會自動跳轉到錄音網頁",
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": True,
+                                "margin": "md"
+                            }
+                        ],
+                        "paddingAll": "20px"
+                    }
+                },
+                {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/voice-step2.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "第2步：選擇語言",
+                                "weight": "bold",
+                                "size": "lg",
+                                "color": "#2E86AB",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "在錄音頁面選擇您要使用的語言：\n\n🇹🇼 國語\n🇹🇼 台語\n\n選擇完成後準備開始錄音",
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": True,
+                                "margin": "md"
+                            }
+                        ],
+                        "paddingAll": "20px"
+                    }
+                },
+                {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/voice-step3.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "第3步：開始錄音",
+                                "weight": "bold",
+                                "size": "lg",
+                                "color": "#2E86AB",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "點擊錄音按鈕開始說話：\n\n• 清楚說出您的問題\n• 錄音完成後點擊停止\n• 系統會自動轉換成文字\n• 文字會直接發送到聊天室",
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": True,
+                                "margin": "md"
+                            }
+                        ],
+                        "paddingAll": "20px"
+                    }
+                }
+            ]
+        }
+    }
+
+def create_blood_sugar_tutorial_carousel():
+    """創建血糖管理詳細教學 Carousel"""
+    return {
+        "type": "flex",
+        "altText": "血糖管理教學",
+        "contents": {
+            "type": "carousel",
+            "contents": [
+                {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/blood-step1.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "第1步：記錄血糖數值",
+                                "weight": "bold",
+                                "size": "lg",
+                                "color": "#2E86AB",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "直接輸入血糖數值即可記錄：\n\n• 直接輸入數字：120\n• 加上單位：150mg/dL\n• 加上說明：早餐後血糖 140",
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": True,
+                                "margin": "md"
+                            }
+                        ],
+                        "paddingAll": "20px"
+                    }
+                },
+                {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/blood-step2.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "第2步：查看歷史記錄",
+                                "weight": "bold",
+                                "size": "lg",
+                                "color": "#2E86AB",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "輸入關鍵字查看記錄：\n\n• 輸入「報表」\n• 輸入「歷史」\n• 輸入「記錄」\n\n系統會顯示您的血糖趨勢",
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": True,
+                                "margin": "md"
+                            }
+                        ],
+                        "paddingAll": "20px"
+                    }
+                },
+                {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/blood-step3.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "第3步：生成個人報表",
+                                "weight": "bold",
+                                "size": "lg",
+                                "color": "#2E86AB",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "系統會自動生成：\n\n• 血糖趨勢圖表\n• 每日平均數值\n• 健康狀態評估\n• 個人化建議",
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": True,
+                                "margin": "md"
+                            }
+                        ],
+                        "paddingAll": "20px"
+                    }
+                }
+            ]
+        }
+    }
+
+def create_image_tutorial_carousel():
+    """創建圖像辨識詳細教學 Carousel"""
+    return {
+        "type": "flex",
+        "altText": "圖像辨識教學",
+        "contents": {
+            "type": "carousel",
+            "contents": [
+                {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/image-step1.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "第1步：拍攝清楚照片",
+                                "weight": "bold",
+                                "size": "lg",
+                                "color": "#2E86AB",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "拍攝以下類型的圖片：\n\n• 血糖儀螢幕讀數\n• 藥品包裝或標籤\n• 食物營養標示\n• 醫療報告數據",
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": True,
+                                "margin": "md"
+                            }
+                        ],
+                        "paddingAll": "20px"
+                    }
+                },
+                {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/image-step2.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "第2步：發送圖片",
+                                "weight": "bold",
+                                "size": "lg",
+                                "color": "#2E86AB",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "直接在聊天室發送圖片：\n\n• 點擊相機圖示\n• 選擇拍照或從相簿選取\n• 確認圖片清晰可見\n• 發送給糖小護",
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": True,
+                                "margin": "md"
+                            }
+                        ],
+                        "paddingAll": "20px"
+                    }
+                },
+                {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/image-step3.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "第3步：AI智能分析",
+                                "weight": "bold",
+                                "size": "lg",
+                                "color": "#2E86AB",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "Gemini AI會自動分析：\n\n• 識別圖片中的文字和數據\n• 理解醫療相關內容\n• 提供專業健康建議\n• 回答相關問題",
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": True,
+                                "margin": "md"
+                            }
+                        ],
+                        "paddingAll": "20px"
+                    }
+                }
+            ]
+        }
+    }
+
 def create_skip_tutorial_message():
     """創建跳過教學的祝福訊息"""
     return TextSendMessage(
@@ -756,66 +1167,53 @@ def linebot():
                 elif user_consent[user_id].get("status") == "tutorial_shown":
                     # 教學已顯示，處理教學相關回應或進入正常功能
                     if msg in ["問答教學", "語音教學", "血糖教學", "圖像教學"]:
-                        # 根據不同的教學選擇發送對應的教學圖片
-                        tutorial_images = {
-                            "問答教學": "https://your-image-host.com/first-learn.jpg",
-                            "語音教學": "https://your-image-host.com/second-learn.jpg", 
-                            "血糖教學": "https://your-image-host.com/third-learn.jpg",
-                            "圖像教學": "https://your-image-host.com/fourth-learn.jpg"
+                        # 根據不同的教學選擇發送對應的詳細教學Carousel
+                        tutorial_carousels = {
+                            "問答教學": create_qa_tutorial_carousel(),
+                            "語音教學": create_voice_tutorial_carousel(),
+                            "血糖教學": create_blood_sugar_tutorial_carousel(),
+                            "圖像教學": create_image_tutorial_carousel()
                         }
                         
-                        tutorial_texts = {
-                            "問答教學": "🤖 問答功能教學\n\n直接輸入您的健康問題，我會根據專業糖尿病知識庫為您解答！\n\n例如：「血糖高怎麼辦？」、「糖尿病飲食注意事項」等。",
-                            "語音教學": "🎤 語音轉文字教學\n\n點擊下方功能按鈕中的「語音轉文字」，會跳轉到網頁進行錄音。\n\n支援國語和台語，錄音完成後會自動轉換成文字並發送到聊天室。",
-                            "血糖教學": "📊 血糖管理教學\n\n直接輸入血糖數值即可記錄，例如：「120」、「血糖150」。\n\n輸入「報表」可查看歷史記錄，系統會自動生成個人化健康報表。",
-                            "圖像教學": "📷 圖像辨識教學\n\n直接發送醫療相關圖片，如血糖儀讀數、藥品包裝等。\n\nAI會自動分析圖片內容並提供相關的健康建議。"
-                        }
+                        selected_carousel = tutorial_carousels[msg]
                         
-                        image_url = tutorial_images[msg]
-                        tutorial_text = tutorial_texts[msg]
+                        # 發送詳細教學Carousel
+                        line_bot_api.reply_message(tk, FlexSendMessage(
+                            alt_text=selected_carousel["altText"],
+                            contents=selected_carousel["contents"]
+                        ))
                         
-                        # 發送教學圖片和說明文字
-                        line_bot_api.reply_message(tk, [
-                            ImageSendMessage(
-                                original_content_url=image_url,
-                                preview_image_url=image_url
-                            ),
-                            TextSendMessage(text=tutorial_text + "\n\n現在您可以開始正常使用糖小護的所有功能了！")
-                        ])
-                        
-                        user_consent[user_id]["status"] = "agreed"  # 進入正常使用狀態
+                        user_consent[user_id]["status"] = "detailed_tutorial"  # 設為詳細教學狀態
                         save_user_data(user_consent)
                         return
                     else:
                         # 其他訊息，更新狀態並繼續處理正常功能邏輯
                         user_consent[user_id]["status"] = "agreed"
                         save_user_data(user_consent)
+                
+                elif user_consent[user_id].get("status") == "detailed_tutorial":
+                    # 用戶看完詳細教學，任何訊息都進入正常使用狀態
+                    user_consent[user_id]["status"] = "agreed"
+                    save_user_data(user_consent)
+                    # 繼續處理正常功能邏輯
 
                 else:
                     # 已經有狀態了
                     if user_consent[user_id].get("status") == "agreed":
-                        # 這裡可以加入您的主要功能邏輯
-                        if "血糖" in msg or any(char.isdigit() for char in msg):
-                            # 記錄血糖數據
-                            blood_sugar_record = {
-                                "value": msg,
-                                "timestamp": datetime.now().isoformat()
-                            }
-                            user_consent[user_id]["blood_sugar_records"].append(blood_sugar_record)
+                        # 用戶已完成引導，準備接收RAG功能
+                        if msg == "教學" or msg == "功能介紹":
+                            # 重新顯示功能介紹carousel
+                            tutorial_carousel = create_tutorial_carousel()
+                            line_bot_api.reply_message(tk, FlexSendMessage(
+                                alt_text=tutorial_carousel["altText"],
+                                contents=tutorial_carousel["contents"]
+                            ))
+                            user_consent[user_id]["status"] = "tutorial_shown"
                             save_user_data(user_consent)
-                            
-                            record_count = len(user_consent[user_id]["blood_sugar_records"])
-                            reply = f"📊 已記錄您的血糖數據：{msg}\n\n這是您的第 {record_count} 筆記錄。如需查看報表或更多功能，請繼續輸入指令。"
-                        elif "報表" in msg or "圖表" in msg:
-                            record_count = len(user_consent[user_id]["blood_sugar_records"])
-                            if record_count > 0:
-                                recent_records = user_consent[user_id]["blood_sugar_records"][-5:]
-                                records_text = "\n".join([f"• {r['value']} ({r['timestamp'][:10]})" for r in recent_records])
-                                reply = f"📈 您的血糖記錄（最近5筆）：\n{records_text}\n\n總共已記錄 {record_count} 筆數據。完整報表功能開發中！"
-                            else:
-                                reply = "📈 您還沒有血糖記錄。請先輸入血糖數值開始記錄！"
+                            return
                         else:
-                            reply = f"💬 糖小護收到您的訊息：{msg}\n\n我正在學習更多健康知識來更好地為您服務！您可以輸入血糖數值或健康相關問題。"
+                            # 其他訊息 - 準備接收RAG功能
+                            reply = f"💬 您好！我是糖小護，您的專屬健康管理助手。\n\n🔧 RAG智能問答系統整合中，敬請期待！\n\n如需重新查看功能介紹，請輸入「教學」。"
                     elif user_consent[user_id].get("status") == "disagreed":
                         reply = "由於您尚未同意服務條款，目前無法使用糖小護的功能。\n\n如果您想重新開始，請輸入「重新開始」。"
                         if msg == "重新開始":
@@ -828,7 +1226,7 @@ def linebot():
                             ))
                             return
             else:
-                reply = "糖小護目前支援文字訊息，圖片功能正在開發中！\n\n請輸入您的血糖數值或健康相關問題。"
+                reply = "💬 糖小護收到您的訊息！\n\n🔧 多媒體功能整合中，敬請期待！"
         
         else:
             # 其他事件類型 (unfollow, postback 等)
