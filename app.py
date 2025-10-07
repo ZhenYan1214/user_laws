@@ -5,7 +5,7 @@ from datetime import datetime
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage,
     FlexSendMessage, PostbackEvent, PostbackAction,
     QuickReply, QuickReplyButton, MessageAction
 )
@@ -332,7 +332,7 @@ def create_tutorial_carousel():
                         "contents": [
                             {
                                 "type": "text",
-                                "text": "智能健康問答",
+                                "text": "問與答",
                                 "weight": "bold",
                                 "size": "lg",
                                 "color": "#2E86AB",
@@ -434,7 +434,7 @@ def create_tutorial_carousel():
                         "contents": [
                             {
                                 "type": "text",
-                                "text": "血糖記錄管理",
+                                "text": "血糖管理室",
                                 "weight": "bold",
                                 "size": "lg",
                                 "color": "#2E86AB",
@@ -485,7 +485,7 @@ def create_tutorial_carousel():
                         "contents": [
                             {
                                 "type": "text",
-                                "text": "圖像辨識分析",
+                                "text": "影像辨識",
                                 "weight": "bold",
                                 "size": "lg",
                                 "color": "#2E86AB",
@@ -493,7 +493,7 @@ def create_tutorial_carousel():
                             },
                             {
                                 "type": "text",
-                                "text": "• Gemini AI 圖像分析\n• 醫療相關圖片辨識\n• 智能健康建議",
+                                "text": "• Gemini AI影像分析\n• 醫療相關圖片辨識\n• 智能健康建議",
                                 "size": "sm",
                                 "color": "#666666",
                                 "wrap": True,
@@ -513,7 +513,7 @@ def create_tutorial_carousel():
                                 "action": {
                                     "type": "message",
                                     "label": "查看教學",
-                                    "text": "圖像教學"
+                                    "text": "影像教學"
                                 },
                                 "color": "#2E86AB"
                             }
@@ -718,7 +718,7 @@ def create_blood_sugar_tutorial_carousel():
     """創建血糖管理詳細教學 Carousel"""
     return {
         "type": "flex",
-        "altText": "血糖管理教學",
+        "altText": "血糖管理室教學",
         "contents": {
             "type": "carousel",
             "contents": [
@@ -826,10 +826,10 @@ def create_blood_sugar_tutorial_carousel():
     }
 
 def create_image_tutorial_carousel():
-    """創建圖像辨識詳細教學 Carousel"""
+    """創建影像辨識詳細教學 Carousel"""
     return {
         "type": "flex",
-        "altText": "圖像辨識教學",
+        "altText": "影像辨識教學",
         "contents": {
             "type": "carousel",
             "contents": [
@@ -992,7 +992,7 @@ def create_main_welcome_message():
                     },
                     {
                         "type": "text",
-                        "text": "血糖記錄管理\n健康諮詢服務\n個人化報表\n數據分析追蹤",
+                        "text": "血糖管理室\n健康諮詢服務\n個人化報表\n數據分析追蹤",
                         "size": "sm",
                         "color": "#666666",
                         "wrap": True,
@@ -1166,13 +1166,13 @@ def linebot():
 
                 elif user_consent[user_id].get("status") == "tutorial_shown":
                     # 教學已顯示，處理教學相關回應或進入正常功能
-                    if msg in ["問答教學", "語音教學", "血糖教學", "圖像教學"]:
+                    if msg in ["問答教學", "語音教學", "血糖教學", "影像教學"]:
                         # 根據不同的教學選擇發送對應的詳細教學Carousel
                         tutorial_carousels = {
                             "問答教學": create_qa_tutorial_carousel(),
                             "語音教學": create_voice_tutorial_carousel(),
                             "血糖教學": create_blood_sugar_tutorial_carousel(),
-                            "圖像教學": create_image_tutorial_carousel()
+                            "影像教學": create_image_tutorial_carousel()
                         }
                         
                         selected_carousel = tutorial_carousels[msg]
