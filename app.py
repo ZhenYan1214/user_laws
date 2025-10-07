@@ -5,7 +5,7 @@ from datetime import datetime
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, 
+    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage,
     FlexSendMessage, PostbackEvent, PostbackAction,
     QuickReply, QuickReplyButton, MessageAction
 )
@@ -271,28 +271,12 @@ def create_tutorial_carousel():
             "contents": [
                 {
                     "type": "bubble",
-                    "header": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "🍭",
-                                "size": "xxl",
-                                "align": "center"
-                            },
-                            {
-                                "type": "text",
-                                "text": "歡迎使用糖小護",
-                                "weight": "bold",
-                                "size": "lg",
-                                "color": "#2E86AB",
-                                "align": "center",
-                                "margin": "md"
-                            }
-                        ],
-                        "backgroundColor": "#F0F8FF",
-                        "paddingAll": "20px"
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/first.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
                     },
                     "body": {
                         "type": "box",
@@ -300,11 +284,20 @@ def create_tutorial_carousel():
                         "contents": [
                             {
                                 "type": "text",
+                                "text": "歡迎使用糖小護",
+                                "weight": "bold",
+                                "size": "lg",
+                                "color": "#2E86AB",
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
                                 "text": "您的專屬健康管理助手",
                                 "size": "md",
                                 "color": "#666666",
                                 "align": "center",
-                                "wrap": True
+                                "wrap": True,
+                                "margin": "sm"
                             },
                             {
                                 "type": "separator",
@@ -326,33 +319,25 @@ def create_tutorial_carousel():
                 },
                 {
                     "type": "bubble",
-                    "header": {
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/second.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
                         "type": "box",
                         "layout": "vertical",
                         "contents": [
-                            {
-                                "type": "text",
-                                "text": "❓",
-                                "size": "xxl",
-                                "align": "center"
-                            },
                             {
                                 "type": "text",
                                 "text": "智能健康問答",
                                 "weight": "bold",
                                 "size": "lg",
                                 "color": "#2E86AB",
-                                "align": "center",
-                                "margin": "md"
-                            }
-                        ],
-                        "backgroundColor": "#F0F8FF",
-                        "paddingAll": "20px"
-                    },
-                    "body": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
+                                "align": "center"
+                            },
                             {
                                 "type": "text",
                                 "text": "• 專業糖尿病知識問答\n• RAG 檢索增強生成\n• 24小時智能諮詢",
@@ -385,33 +370,25 @@ def create_tutorial_carousel():
                 },
                 {
                     "type": "bubble",
-                    "header": {
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/third.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
                         "type": "box",
                         "layout": "vertical",
                         "contents": [
-                            {
-                                "type": "text",
-                                "text": "🎤",
-                                "size": "xxl",
-                                "align": "center"
-                            },
                             {
                                 "type": "text",
                                 "text": "語音轉文字",
                                 "weight": "bold",
                                 "size": "lg",
                                 "color": "#2E86AB",
-                                "align": "center",
-                                "margin": "md"
-                            }
-                        ],
-                        "backgroundColor": "#F0F8FF",
-                        "paddingAll": "20px"
-                    },
-                    "body": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
+                                "align": "center"
+                            },
                             {
                                 "type": "text",
                                 "text": "• 支援國語、台語辨識\n• LIFF 網頁錄音介面\n• 即時語音轉文字",
@@ -444,33 +421,25 @@ def create_tutorial_carousel():
                 },
                 {
                     "type": "bubble",
-                    "header": {
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/fourth.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
                         "type": "box",
                         "layout": "vertical",
                         "contents": [
-                            {
-                                "type": "text",
-                                "text": "📊",
-                                "size": "xxl",
-                                "align": "center"
-                            },
                             {
                                 "type": "text",
                                 "text": "血糖記錄管理",
                                 "weight": "bold",
                                 "size": "lg",
                                 "color": "#2E86AB",
-                                "align": "center",
-                                "margin": "md"
-                            }
-                        ],
-                        "backgroundColor": "#F0F8FF",
-                        "paddingAll": "20px"
-                    },
-                    "body": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
+                                "align": "center"
+                            },
                             {
                                 "type": "text",
                                 "text": "• 血糖數值記錄追蹤\n• Firebase 雲端儲存\n• 個人化報表圖表",
@@ -503,33 +472,25 @@ def create_tutorial_carousel():
                 },
                 {
                     "type": "bubble",
-                    "header": {
+                    "hero": {
+                        "type": "image",
+                        "url": "https://your-image-host.com/fifth.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
                         "type": "box",
                         "layout": "vertical",
                         "contents": [
-                            {
-                                "type": "text",
-                                "text": "📷",
-                                "size": "xxl",
-                                "align": "center"
-                            },
                             {
                                 "type": "text",
                                 "text": "圖像辨識分析",
                                 "weight": "bold",
                                 "size": "lg",
                                 "color": "#2E86AB",
-                                "align": "center",
-                                "margin": "md"
-                            }
-                        ],
-                        "backgroundColor": "#F0F8FF",
-                        "paddingAll": "20px"
-                    },
-                    "body": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
+                                "align": "center"
+                            },
                             {
                                 "type": "text",
                                 "text": "• Gemini AI 圖像分析\n• 醫療相關圖片辨識\n• 智能健康建議",
@@ -730,13 +691,20 @@ def linebot():
                 elif user_consent[user_id].get("status") == "pending":
                     # 等待用戶回覆
                     if msg == "同意":
-                        # 發送條款完成訊息
+                        # 發送條款完成訊息 + 直接發送按鈕確認訊息
                         welcome_message = create_welcome_message()
-                        line_bot_api.reply_message(tk, FlexSendMessage(
-                            alt_text=welcome_message["altText"],
-                            contents=welcome_message["contents"]
-                        ))
-                        user_consent[user_id]["status"] = "button_check"  # 改為button_check狀態，準備進入引導流程
+                        button_check_message = create_button_check_message()
+                        
+                        # 發送兩條訊息：條款完成 + 按鈕確認
+                        line_bot_api.reply_message(tk, [
+                            FlexSendMessage(
+                                alt_text=welcome_message["altText"],
+                                contents=welcome_message["contents"]
+                            ),
+                            button_check_message
+                        ])
+                        
+                        user_consent[user_id]["status"] = "awaiting_button_response"  # 直接設為等待按鈕回應
                         user_consent[user_id]["agreed_time"] = datetime.now().isoformat()
                         save_user_data(user_consent)
                         return
@@ -748,14 +716,6 @@ def linebot():
                     else:
                         reply = "請點選條款頁面中的「同意並開始使用」或「暫不同意」按鈕，或直接回覆「同意」或「不同意」。"
 
-                elif user_consent[user_id].get("status") == "button_check":
-                    # 用戶剛同意條款，發送第一階段按鈕確認訊息
-                    button_check_message = create_button_check_message()
-                    line_bot_api.reply_message(tk, button_check_message)
-                    user_consent[user_id]["status"] = "awaiting_button_response"  # 等待按鈕回應
-                    save_user_data(user_consent)
-                    return
-                
                 elif user_consent[user_id].get("status") == "awaiting_button_response":
                     # 處理按鈕確認回應
                     if msg == "有":
@@ -796,10 +756,36 @@ def linebot():
                 elif user_consent[user_id].get("status") == "tutorial_shown":
                     # 教學已顯示，處理教學相關回應或進入正常功能
                     if msg in ["問答教學", "語音教學", "血糖教學", "圖像教學"]:
-                        # 這裡之後可以加入發送對應教學圖片的邏輯
-                        reply = f"您選擇了{msg}！\n\n教學圖片功能開發中，敬請期待。\n\n現在您可以開始正常使用糖小護的所有功能了！"
+                        # 根據不同的教學選擇發送對應的教學圖片
+                        tutorial_images = {
+                            "問答教學": "https://your-image-host.com/first-learn.jpg",
+                            "語音教學": "https://your-image-host.com/second-learn.jpg", 
+                            "血糖教學": "https://your-image-host.com/third-learn.jpg",
+                            "圖像教學": "https://your-image-host.com/fourth-learn.jpg"
+                        }
+                        
+                        tutorial_texts = {
+                            "問答教學": "🤖 問答功能教學\n\n直接輸入您的健康問題，我會根據專業糖尿病知識庫為您解答！\n\n例如：「血糖高怎麼辦？」、「糖尿病飲食注意事項」等。",
+                            "語音教學": "🎤 語音轉文字教學\n\n點擊下方功能按鈕中的「語音轉文字」，會跳轉到網頁進行錄音。\n\n支援國語和台語，錄音完成後會自動轉換成文字並發送到聊天室。",
+                            "血糖教學": "📊 血糖管理教學\n\n直接輸入血糖數值即可記錄，例如：「120」、「血糖150」。\n\n輸入「報表」可查看歷史記錄，系統會自動生成個人化健康報表。",
+                            "圖像教學": "📷 圖像辨識教學\n\n直接發送醫療相關圖片，如血糖儀讀數、藥品包裝等。\n\nAI會自動分析圖片內容並提供相關的健康建議。"
+                        }
+                        
+                        image_url = tutorial_images[msg]
+                        tutorial_text = tutorial_texts[msg]
+                        
+                        # 發送教學圖片和說明文字
+                        line_bot_api.reply_message(tk, [
+                            ImageSendMessage(
+                                original_content_url=image_url,
+                                preview_image_url=image_url
+                            ),
+                            TextSendMessage(text=tutorial_text + "\n\n現在您可以開始正常使用糖小護的所有功能了！")
+                        ])
+                        
                         user_consent[user_id]["status"] = "agreed"  # 進入正常使用狀態
                         save_user_data(user_consent)
+                        return
                     else:
                         # 其他訊息，更新狀態並繼續處理正常功能邏輯
                         user_consent[user_id]["status"] = "agreed"
