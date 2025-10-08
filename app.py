@@ -273,7 +273,7 @@ def create_tutorial_carousel():
                     "type": "bubble",
                     "hero": {
                         "type": "image",
-                        "url": "https://your-image-host.com/first.jpg",
+                        "url": "https://ibb.co/mV0kCXJY",
                         "size": "full",
                         "aspectRatio": "20:13",
                         "aspectMode": "cover"
@@ -321,7 +321,7 @@ def create_tutorial_carousel():
                     "type": "bubble",
                     "hero": {
                         "type": "image",
-                        "url": "https://your-image-host.com/second.jpg",
+                        "url": "https://ibb.co/1t0mHPg3",
                         "size": "full",
                         "aspectRatio": "20:13",
                         "aspectMode": "cover"
@@ -372,7 +372,7 @@ def create_tutorial_carousel():
                     "type": "bubble",
                     "hero": {
                         "type": "image",
-                        "url": "https://your-image-host.com/third.jpg",
+                        "url": "https://ibb.co/9Hgj2nv7",
                         "size": "full",
                         "aspectRatio": "20:13",
                         "aspectMode": "cover"
@@ -423,7 +423,7 @@ def create_tutorial_carousel():
                     "type": "bubble",
                     "hero": {
                         "type": "image",
-                        "url": "https://your-image-host.com/fourth.jpg",
+                        "url": "https://ibb.co/cc24LRpX",
                         "size": "full",
                         "aspectRatio": "20:13",
                         "aspectMode": "cover"
@@ -474,7 +474,7 @@ def create_tutorial_carousel():
                     "type": "bubble",
                     "hero": {
                         "type": "image",
-                        "url": "https://your-image-host.com/fifth.jpg",
+                        "url": "https://ibb.co/fGDfDSPz",
                         "size": "full",
                         "aspectRatio": "20:13",
                         "aspectMode": "cover"
